@@ -1,3 +1,5 @@
+{-# LANGUAGE ScopedTypeVariables #-}
+
 module Task2
   ( doubleNeg
   , excludedNeg
@@ -15,13 +17,13 @@ doubleNeg :: a -> Neg (Neg a)
 doubleNeg a = \func -> func a
 
 -- excludedNeg :: ((Either a (a -> Void)) -> Void) -> Void
-excludedNeg :: Neg (Neg (Either a (Neg a)))
+excludedNeg :: forall a . Neg (Neg (Either a (Neg a)))
 excludedNeg f = aToVoidToVoid aToVoid
   where
---  aToVoidToVoid :: a -> Void -> Void
+    aToVoidToVoid :: (a -> Void) -> Void
     aToVoidToVoid x = f $ Right x
 
---  aToVoid :: a -> Void
+    aToVoid :: a -> Void
     aToVoid x = f $ Left x
 
 -- can't be populated

@@ -21,7 +21,7 @@ eitherAssoc =
       oneSide (Left a)          = Left $ Left a
       oneSide (Right (Right c)) = Right c
       oneSide (Right (Left b))  = Left $ Right b
-
+      
       anotherSide :: Either (Either a b) c -> Either a (Either b c)
       anotherSide (Left (Left a))  = Left a
       anotherSide (Left (Right b)) = Right $ Left b

@@ -5,21 +5,20 @@ module Task4
   , mapFix
   ) where
 
-import           Data.Function (fix)
+import           Data.Function   (fix)
+import           Numeric.Natural
 
 iterateElement :: a -> [a]
 iterateElement a = fix (a :)
 
-fibonacci :: Integer -> Integer
+fibonacci :: Natural -> Natural
 fibonacci n =
-  if n >= 0
-    then let fibonacciCore :: (Integer -> Integer) -> Integer -> Integer
-             fibonacciCore f c
-               | n == 0 = 0
-               | n == 1 = 1
-               | otherwise = f (c - 1) + f (c - 2)
-          in fix fibonacciCore n
-    else error "illegal argument"
+  let fibonacciCore :: (Natural -> Natural) -> Natural -> Natural
+      fibonacciCore f c
+        | n == 0 = 0
+        | n == 1 = 1
+        | otherwise = f (c - 1) + f (c - 2)
+   in fix fibonacciCore n
 
 factorial :: Integer -> Integer
 factorial =
@@ -28,7 +27,6 @@ factorial =
         | n <= 1 = 1
         | otherwise = n * f (n - 1)
    in fix factorialCore
-
 
 mapFix :: (a -> b) -> [a] -> [b]
 mapFix =
