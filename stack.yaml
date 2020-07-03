@@ -32,9 +32,6 @@ packages:
 - hw0
 - hw1
 - hw1-second-chance
-- hw2
-- hw3
-- hw4
 # Dependency packages to be pulled from upstream that are not in the resolver.
 # These entries can reference officially published versions as well as
 # forks / in-progress versions pinned to a git hash. For example:
